@@ -1,0 +1,20 @@
+name: "WebView Proxy"
+description: "Lädt externe Webseiten über einen Proxy und umgeht X-Frame-Options Blockierungen. URL einfach in den Optionen eintragen."
+version: "1.0.0"
+slug: "webview_proxy"
+init: false
+arch:
+  - aarch64
+  - amd64
+  - armhf
+  - armv7
+startup: services
+boot: auto
+ports:
+  8099/tcp: 8099
+ports_description:
+  8099/tcp: "WebView Proxy"
+options:
+  url: "https://www.bahnhof.de/leer-ostfriesl/abfahrt"
+schema:
+  url: url
