@@ -1,8 +1,8 @@
-FROM ghcr.io/home-assistant/amd64-base-python:3.12
+FROM ghcr.io/home-assistant/amd64-base:latest
 
-RUN pip3 install --no-cache-dir \
-    aiohttp beautifulsoup4 lxml
+RUN apk add --no-cache python3 py3-pip && \
+    pip3 install --no-cache-dir aiohttp beautifulsoup4 lxml
 
 COPY rootfs /
 RUN chmod +x /usr/bin/proxy.py
-CMD ["/usr/bin/proxy.py"]
+CMD ["python3", "/usr/bin/proxy.py"]
