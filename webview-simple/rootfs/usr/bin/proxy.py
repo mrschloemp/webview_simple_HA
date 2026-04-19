@@ -96,7 +96,7 @@ async def handle_resource(request: web.Request) -> web.Response:
                 body = await resp.read()
                 if "text/css" in ct:
                     css = body.decode("utf-8", errors="replace")
-                    css = re.sub(r"url\(([^)]+)\)", lambda m: f"url('/r?u={quote(m.group(1).strip(chr(39)+chr(34)), safe=\"\")}'" , css)
+                    css = re.sub(r"url\(([^)]+)\)", lambda m: "url('/r?u=" + quote(m.group(1).strip("'\""), safe="") + "')", css)
                     body = css.encode()
                 return web.Response(body=body, content_type=ct)
         except Exception:
